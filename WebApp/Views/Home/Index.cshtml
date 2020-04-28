@@ -1,0 +1,36 @@
+﻿@model WebApp.Models.Calculator
+@{
+    ViewBag.Title = "Calculator";
+}
+
+    <div>
+
+        @using (Ajax.BeginForm("CalcResult", new AjaxOptions
+        {
+
+            UpdateTargetId = "results",
+            //Confirm = "Выполнить AJAX-запрос?"
+        }))
+        {
+            <div class="editor-label">
+                @Html.LabelFor(l => l.Factor)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Factor)
+                @Html.ValidationMessageFor(m => m.Factor)
+            </div>
+            <br/>
+            <input type="submit" value="Get Result" class="btn btn-primary btn-lg" />
+        }
+
+        <div id="results">
+
+        </div>
+
+
+    </div>
+
+@Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+<script src='@Url.Content("~/Scripts/jquery.validate.js")' type='text/javascript'></script>
+<script src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")' type='text/javascript'></script>
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
